@@ -3,9 +3,6 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.config(['$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
 
-	$httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-	
     $routeProvider.when('/', {
         templateUrl: 'main.html',
         controller: 'MainCtrl'
@@ -25,10 +22,10 @@ app.config(['$routeProvider','$httpProvider', function($routeProvider,$httpProvi
 
 app.controller('MainCtrl', function($scope, $http) {
     console.log("success");
-    $http.get('http://localhost:3000/').
+    $http.get('/xyz').
     success(function(data, status, headers, config) {
-    	console.log("success");
-        $scope.name = data.name;
+        console.log("success");
+        $scope.name = data;
     }).
     error(function(data, status, headers, config) {
         $scope.name = 'Error!';
